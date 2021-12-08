@@ -32,42 +32,41 @@ class ProductService {
    * @param Product[]
    * @returns void
    */
-  updatePrice = (...products) => {
-    for (let i = 0; i < products.length; i++) {
+  updatePrice = (product) => {
       //Reduce the number of day left
-      products[i].setSellIn(products[i].getSellIn() - 1);
+      product.setSellIn(product.getSellIn() - 1);
 
       //Check if the price can be updated based on test rules
       if (
-        (products[i].getPrice() == 0 &&
-          products[i].getName() != "Full Coverage") ||
-        products[i].getPrice() == 80 ||
-        (products[i].getPrice() == 50 &&
-          products[i].getName() == "Full Coverage")
+        (product.getPrice() == 0 &&
+          product.getName() != "Full Coverage") ||
+        product.getPrice() == 80 ||
+        (product.getPrice() == 50 &&
+          product.getName() == "Full Coverage")
       )
         continue;
       else {
-        switch (products[i].getName()) {
+        switch (product.getName()) {
           case "Full Coverage":
-            this.#updateFullCoveragePrice(products[i]);
+            this.#updateFullCoveragePrice(product);
             break;
           case "Special Full Coverage":
-            this.#updateSpecialFullCoveragePrice(products[i]);
+            this.#updateSpecialFullCoveragePrice(product);
             break;
           case "Super Sale":
-            this.#updateSuperSalePrice(products[i]);
+            this.#updateSuperSalePrice(product);
             break;
           default:
-            this.#updateNormalPrice(products[i]);
+            this.#updateNormalPrice(product);
         }
 
         //Adjust prices after computation to avoid negative and value higher than 50
-        if (products[i].getPrice() < 0) products[i].setPrice(0);
-        if (products[i].getPrice() > 50) products[i].setPrice(50);
+        if (product.getPrice() < 0) product.setPrice(0);
+        if (product.getPrice() > 50) product.setPrice(50);
       }
-    }
+    
 
-    return products;
+    return product;
   };
 
   /**
