@@ -1,0 +1,5 @@
+# Ignore node libraries 
+node_modules/
+
+# Ignore the generated txt files
+products_after_30_days.txt
