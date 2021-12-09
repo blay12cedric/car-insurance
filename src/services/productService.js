@@ -33,13 +33,15 @@ class ProductService {
    * @returns void
    */
   updatePrice = (product) => {
+    //If it is a Mega Coverage return it
+    if (product.getPrice() == 80) return product;
+
     //Reduce the number of day left
     product.setSellIn(product.getSellIn() - 1);
 
     //Check if the price can be updated based on test rules
     if (
       (product.getPrice() == 0 && product.getName() != "Full Coverage") ||
-      product.getPrice() == 80 ||
       (product.getPrice() == 50 && product.getName() == "Full Coverage")
     )
       return product;

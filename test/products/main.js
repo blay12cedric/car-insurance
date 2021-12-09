@@ -74,7 +74,7 @@ describe("Test's suite for module Product (model & service)", () => {
     it("should return a correct updated price and sellIn for Mega Coverage", () => {
       assert.deepEqual(
         Product.print(productService.updatePrice(productMegaCoverage)),
-        Product.print(new Product("Mega Coverage", 9, 80))
+        Product.print(new Product("Mega Coverage", 10, 80))
       );
     });
     it("should return a correct updated price and sellIn for Super Sale", () => {
