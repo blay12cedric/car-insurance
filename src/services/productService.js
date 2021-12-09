@@ -48,16 +48,16 @@ class ProductService {
     else {
       switch (product.getName()) {
         case "Full Coverage":
-          this.#updateFullCoveragePrice(product);
+          this.updateFullCoveragePrice(product);
           break;
         case "Special Full Coverage":
-          this.#updateSpecialFullCoveragePrice(product);
+          this.updateSpecialFullCoveragePrice(product);
           break;
         case "Super Sale":
-          this.#updateSuperSalePrice(product);
+          this.updateSuperSalePrice(product);
           break;
         default:
-          this.#updateNormalPrice(product);
+          this.updateNormalPrice(product);
       }
 
       //Adjust prices after computation to avoid negative and value higher than 50
@@ -73,9 +73,11 @@ class ProductService {
    * @param Product
    * @returns void
    */
-  #updateNormalPrice = (product) => {
+  updateNormalPrice = (product) => {
     if (product.getSellIn() >= 0) product.setPrice(product.getPrice() - 1);
     else product.setPrice(product.getPrice() - 2);
+
+    return product;
   };
 
   /**
@@ -83,9 +85,11 @@ class ProductService {
    * @param Product
    * @returns void
    */
-  #updateFullCoveragePrice = (product) => {
+  updateFullCoveragePrice = (product) => {
     if (product.getSellIn() >= 0) product.setPrice(product.getPrice() + 1);
     else product.setPrice(product.getPrice() + 2);
+
+    return product;
   };
 
   /**
@@ -93,7 +97,7 @@ class ProductService {
    * @param Product
    * @returns void
    */
-  #updateSpecialFullCoveragePrice = (product) => {
+  updateSpecialFullCoveragePrice = (product) => {
     //Check the sellIn and apply update prices based on rules
     if (product.getSellIn() > 10) product.setPrice(product.getPrice() + 1);
     else if (product.getSellIn() <= 10 && product.getSellIn() > 5)
@@ -101,6 +105,8 @@ class ProductService {
     else if (product.getSellIn() <= 5 && product.getSellIn() > 0)
       product.setPrice(product.getPrice() + 3);
     else product.setPrice(0);
+
+    return product;
   };
 
   /**
@@ -108,9 +114,11 @@ class ProductService {
    * @param Product
    * @returns void
    */
-  #updateSuperSalePrice = (product) => {
+  updateSuperSalePrice = (product) => {
     if (product.getSellIn() >= 0) product.setPrice(product.getPrice() - 2);
     else product.setPrice(product.getPrice() - 4);
+
+    return product;
   };
 }
 
