@@ -10,8 +10,8 @@ describe("Test's suite for module Product (model & service)", () => {
   });
 
   describe("Test function printer() of printer service", () => {
-    it("should return true if the file was written successullfy", () => {
-      assert.equal(printerService.printPriceUpdate("10 days"), true);
+    it("should return true if the file products_after_2_days.txt was written successullfy", () => {
+      assert.equal(printerService.printPriceUpdate("2"), true);
     });
   });
 });
