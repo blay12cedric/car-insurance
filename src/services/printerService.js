@@ -23,6 +23,15 @@ class PrinterService {
     });
     return true;
   };
+
+  /* Getters and setters */
+  getInput = () => {
+    return this.#input;
+  };
+
+  setInput = (input) => {
+    this.#input = input;
+  };
 }
 
 export { PrinterService };
