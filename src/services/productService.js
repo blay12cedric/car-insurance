@@ -33,38 +33,35 @@ class ProductService {
    * @returns void
    */
   updatePrice = (product) => {
-      //Reduce the number of day left
-      product.setSellIn(product.getSellIn() - 1);
+    //Reduce the number of day left
+    product.setSellIn(product.getSellIn() - 1);
 
-      //Check if the price can be updated based on test rules
-      if (
-        (product.getPrice() == 0 &&
-          product.getName() != "Full Coverage") ||
-        product.getPrice() == 80 ||
-        (product.getPrice() == 50 &&
-          product.getName() == "Full Coverage")
-      )
-        continue;
-      else {
-        switch (product.getName()) {
-          case "Full Coverage":
-            this.#updateFullCoveragePrice(product);
-            break;
-          case "Special Full Coverage":
-            this.#updateSpecialFullCoveragePrice(product);
-            break;
-          case "Super Sale":
-            this.#updateSuperSalePrice(product);
-            break;
-          default:
-            this.#updateNormalPrice(product);
-        }
-
-        //Adjust prices after computation to avoid negative and value higher than 50
-        if (product.getPrice() < 0) product.setPrice(0);
-        if (product.getPrice() > 50) product.setPrice(50);
+    //Check if the price can be updated based on test rules
+    if (
+      (product.getPrice() == 0 && product.getName() != "Full Coverage") ||
+      product.getPrice() == 80 ||
+      (product.getPrice() == 50 && product.getName() == "Full Coverage")
+    )
+      return product;
+    else {
+      switch (product.getName()) {
+        case "Full Coverage":
+          this.#updateFullCoveragePrice(product);
+          break;
+        case "Special Full Coverage":
+          this.#updateSpecialFullCoveragePrice(product);
+          break;
+        case "Super Sale":
+          this.#updateSuperSalePrice(product);
+          break;
+        default:
+          this.#updateNormalPrice(product);
       }
-    
+
+      //Adjust prices after computation to avoid negative and value higher than 50
+      if (product.getPrice() < 0) product.setPrice(0);
+      if (product.getPrice() > 50) product.setPrice(50);
+    }
 
     return product;
   };
