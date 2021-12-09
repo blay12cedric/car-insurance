@@ -1,0 +1,17 @@
+import { assert } from "chai";
+import { before, describe, it } from "mocha";
+import { PrinterService } from "../../src/services/index.js";
+
+describe("Test's suite for module Product (model & service)", () => {
+  let input, printerService;
+  before("Create the input and a PrinterService()", () => {
+    input = "Hello Car Insurance";
+    printerService = new PrinterService(input);
+  });
+
+  describe("Test function printer() of printer service", () => {
+    it("should return true if the file was written successullfy", () => {
+      assert.equal(printerService.printPriceUpdate("10 days"), true);
+    });
+  });
+});

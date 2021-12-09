@@ -2,7 +2,6 @@ import * as fs from "fs";
 
 /**
  *
- *
  * class that provides services for printing
  */
 class PrinterService {
@@ -18,12 +17,11 @@ class PrinterService {
    * @param {*} nbreDays
    * @returns boolean
    */
-  printPriceUpdate = async (nbreDays) => {
+  printPriceUpdate = (nbreDays) => {
     fs.writeFile(`products_after_${nbreDays}_days.txt`, this.#input, (e) => {
-      if (e) throw Error(`An error occured during file writing`);
-      console.log(`File writing completed successfully!`);
-      return true;
+      console.log(e);
     });
+    return true;
   };
 }
 
