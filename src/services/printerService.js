@@ -19,7 +19,7 @@ class PrinterService {
    */
   printPriceUpdate = (nbreDays) => {
     fs.writeFile(`products_after_${nbreDays}_days.txt`, this.#input, (e) => {
-      console.log(e);
+      if (e) console.error(e);
     });
     return true;
   };
