@@ -18,7 +18,7 @@ class Product {
       (name == "Mega Coverage" && price != 80) ||
       (price == 80 && name != "Mega Coverage")
     )
-      throw Error("Mega Coverage price is always equal to 80.");
+      throw new Error("Mega Coverage price is always equal to 80.");
     this.#name = name;
     this.#sellIn = sellIn;
     this.#price = price;
