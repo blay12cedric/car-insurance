@@ -5,7 +5,7 @@
   "main": "src/main.js",
   "scripts": {
     "test": "mocha --reporter spec --recursive --colors",
-    "test-report-md": "mocha --reporter --reporter markdown > test-report.md",
+    "test-report-md": "mocha --reporter markdown > test-report.md --recursive",
     "after-30-days": "npm run test && node ."
   },
   "repository": {

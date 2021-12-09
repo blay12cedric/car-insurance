@@ -1,5 +1,8 @@
+import { CarInsuranceApp } from "./core/index.js";
+
+//Entry point of the program
 async function main() {
-  console.log("Hello Car Insurance");
+  CarInsuranceApp.execute();
 }
 
 main().catch((e) => {
