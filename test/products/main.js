@@ -16,7 +16,7 @@ describe("Test's suite for module Product (model & service)", () => {
     product = new Product("New Product", 10, 35);
     productFullCoverage = new Product("Full Coverage", 10, 20);
     productMegaCoverage = new Product("Mega Coverage", 10, 80);
-    productSpecialFullCoverage = new Product("Special Full Coverage", 30, 20);
+    productSpecialFullCoverage = new Product("Special Full Coverage", 8, 20);
     productSuperSale = new Product("Super Sale", 20, 20);
     productService = new ProductService();
   });
@@ -53,10 +53,35 @@ describe("Test's suite for module Product (model & service)", () => {
   });
 
   describe("Test method updatePrice() of ProductService", () => {
-    it("should return a correct response for Normal Coverage");
-    it("should return a correct response for Full Coverage");
-    it("should return a correct response for Special Full Coverage");
-    it("should return a correct response for Mega Coverage");
-    it("should return a correct response for Super Sale");
+    it("should return a correct updated price and sellIn for Normal Coverage", () => {
+      assert.deepEqual(
+        Product.print(productService.updatePrice(product)),
+        Product.print(new Product("New Product", 9, 34))
+      );
+    });
+    it("should return a correct updated price and sellIn for Full Coverage", () => {
+      assert.deepEqual(
+        Product.print(productService.updatePrice(productFullCoverage)),
+        Product.print(new Product("Full Coverage", 9, 21))
+      );
+    });
+    it("should return a correct updated price and sellIn for Special Full Coverage", () => {
+      assert.deepEqual(
+        Product.print(productService.updatePrice(productSpecialFullCoverage)),
+        Product.print(new Product("Special Full Coverage", 7, 22))
+      );
+    });
+    it("should return a correct updated price and sellIn for Mega Coverage", () => {
+      assert.deepEqual(
+        Product.print(productService.updatePrice(productMegaCoverage)),
+        Product.print(new Product("Mega Coverage", 9, 80))
+      );
+    });
+    it("should return a correct updated price and sellIn for Super Sale", () => {
+      assert.deepEqual(
+        Product.print(productService.updatePrice(productSuperSale)),
+        Product.print(new Product("Super Sale", 19, 18))
+      );
+    });
   });
 });
